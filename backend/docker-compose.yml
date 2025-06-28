@@ -1,0 +1,13 @@
+services:
+  ollama:
+    build: .
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama-data:/root/.ollama
+      - ./entrypoint.sh:/entrypoint.sh:ro
+    restart: unless-stopped
+    entrypoint: ["/bin/sh", "/entrypoint.sh"]
+
+volumes:
+  ollama-data:
