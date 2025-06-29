@@ -19,7 +19,7 @@ git clone <repository-url>
 cd food-provider-chatbot
 ```
 
-2. Crie um arquivo .env na raiz do projeto com o seguinte formato:
+2. Crie um arquivo .env na pasta "backend" do projeto com o seguinte formato:
 
 ```bash
 PORT=3000
@@ -28,13 +28,13 @@ GEMINI_API_KEY=<API_KEY_DO_GEMINI>
 GEOCODER_API_KEY=<API_KEY_DO_LOCATIONIQ>
 ```
 
-3. Execute no terminal
+3. Execute no terminal estando na pasta "backend"
 
 ```bash
 npm install
 ```
 
-Para instalar as dependências
+Para instalar as dependências do backend
 
 4. Popule o Mongo DB com os dados a serem utilizados. Execute no terminal:
 

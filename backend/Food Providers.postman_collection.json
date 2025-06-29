@@ -1,0 +1,47 @@
+{
+	"info": {
+		"_postman_id": "e7d038ab-6cde-4113-87ed-3cbbe4d60a58",
+		"name": "Food Providers",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "28636390"
+	},
+	"item": [
+		{
+			"name": "Chat",
+			"item": [
+				{
+					"name": "Chat Messages",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"address\": \"Travessa saturnino de pádua, 68\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/chat"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Static Responses",
+			"item": [
+				{
+					"name": "Get response",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3000/staticResponse/1"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
