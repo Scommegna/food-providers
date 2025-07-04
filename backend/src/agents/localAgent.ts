@@ -1,4 +1,3 @@
-// agents/localAgent.ts
 import axios from "axios";
 
 export async function queryLocalAgent(
@@ -9,7 +8,7 @@ export async function queryLocalAgent(
     const response = await axios.post(
       "http://localhost:11434/api/generate",
       {
-        model: "phi",
+        model: "tinyllama",
         prompt,
         stream: false,
       },

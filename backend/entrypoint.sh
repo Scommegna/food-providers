@@ -7,6 +7,6 @@ until curl -s http://localhost:11434 > /dev/null; do
 done
 
 echo "✅ Ollama iniciado. Baixando modelo..."
-ollama pull phi
+ollama pull tinyllama
 
 wait
