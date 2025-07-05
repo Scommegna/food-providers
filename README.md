@@ -117,3 +117,52 @@ npm run dev
 Isso já subirá a aplicação e os containers.
 
 O backend estará rodando na porta 3000 e a IA local na porta 11434
+
+# 📂 Estrutura do Projeto
+```bash
+
+food-providers/
+├── 📂 .vscode/                         
+│   └── 📄 launch.json                  # Configurações de debug do VSCode
+│
+├── 📂 backend/                         # Backend da aplicação (Node.js + TypeScript)
+│   ├── 📂 src/                         
+│   │   ├── 📂 agents/                  # Agentes de integração
+│   │   │   ├── 📄 externalAgents.ts            # Define integrações com serviços externos
+│   │   │   └── 📄 localAgents.ts               # Implementa agentes locais, como chamadas à IA local ou outras rotinas internas
+│   │   │
+│   │   ├── 📂 controllers/             # Controladores de rotas 
+│   │   │   ├── 📄 chatController.ts            # Lógica para receber mensagens do usuário e passar para agentes
+│   │   │   └── 📄 staticResponsesController.ts  # Retorna respostas predefinidas da base 
+│   │   │
+│   │   ├── 📂 db/                      # Configurações de banco de dados
+│   │   │   └── 📄 config.ts                    # Monta a conexão com o banco de dados
+│   │   │
+│   │   ├── 📂 models/                  # Modelos de dados
+│   │   │   ├── 📄 FoodProvider.ts              # Modelo Mongoose para documento FoodProvider, representando informações de um fornecedor
+│   │   │   └── 📄 StaticResponse.ts            # Modelo Mongoose para StaticResponse, guarda respostas fixas usadas pelo bot
+│   │   │
+│   │   ├── 📂 routes/                  # Rotas da API
+│   │   │   ├── 📄 chatRoutes.ts                # Define rota /chat, conecta POST de mensagens ao chatController
+│   │   │   └── 📄 staticResponsesRoutes.ts     # Expõe rota para obter respostas estáticas via staticResponsesController
+│   │   │
+│   │   ├── 📂 seed/                    # Scripts de seed (dados iniciais)
+│   │   │   ├── 📄 seedFoodProviders.ts         # Script para popular o DB com dados iniciais de fornecedores
+│   │   │   └── 📄 seedStaticResponses.ts       # Script para inserir respostas fixas de exemplo
+│   │   │
+│   │   ├── 📄 app.ts                   # Configura a aplicação Express, middlewares, roteamento das rotas principais e tratamento de erros
+│   │   └── 📄 server.ts                # Inicializa o servidor, conecta ao banco e executa o app
+│   │
+│   ├── 📄 .gitignore                   # Define arquivos e pastas a serem ignorados no controle de versão
+│   ├── 📄 Dockerfile                   # Construções Docker para o backend
+│   ├── 📄 Food Providers.postman_collection.json  # Coleção Postman com endpoints prontos para testes
+│   ├── 📄 docker-compose.yml          # Orquestração entre backend, banco e IA local
+│   ├── 📄 entrypoint.sh               # Script de inicialização do container Docker
+│   ├── 📄 package.json                # Dependências e scripts
+│   ├── 📄 package-lock.json           # Lockfile de dependências
+│   └── 📄 tsconfig.json               # Configuração do TypeScript
+│
+├── 📂 frontend/                        # Em desenvolvimento
+│
+└── 📘 README.md                        # Documentação principal
+```
