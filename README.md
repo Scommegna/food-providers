@@ -174,3 +174,164 @@ food-providers/
 │
 └── 📘 README.md                        # Documentação principal
 ```
+
+## 📄 Documentação Arquitetônica
+
+### 📌 Objetivos do Documento
+
+- Descrever a arquitetura do sistema em nível alto e detalhado.
+- Identificar e documentar ameaças de segurança a partir da metodologia STRIDE.
+- Propor controles e contramedidas que fortaleçam a segurança do sistema.
+- Evidenciar a evolução da arquitetura antes e depois da modelagem de ameaças.
+- Apresentar diagramas e matrizes de risco que fundamentam a priorização e mitigação dos problemas identificados.
+- Servir como referência técnica para desenvolvedores, professores e revisores.
+
+---
+
+## 🎯 Visão Geral da Arquitetura
+
+### 🏛️ Descrição da Arquitetura em Alto Nível
+O sistema é composto por três camadas principais:
+
+1. **Frontend**
+   - Interface da landing page e chatbot.
+   - Comunicação com o backend via HTTP (inicial) ou HTTPS (final).
+
+2. **Backend**
+   - API RESTful implementada em Node.js + TypeScript.
+   - Processamento de requisições e integração com IA.
+
+3. **Infraestrutura de IA**
+   - Serviços de IA externa (Google Gemini API).
+   - Serviço de IA local (Tinyllama em Docker).
+
+---
+
+### 🛠️ Tecnologias e Padrões Utilizados
+- Node.js e Express.js
+- TypeScript
+- MongoDB e Mongoose
+- Docker / Docker Compose
+- Gemini API
+- Tinyllama
+- HTTPS
+- CORS restrito
+- Rate Limiting
+- Variáveis de ambiente
+
+---
+
+## Decomposição em Componentes
+
+### 🌐 Frontend
+
+- **Landing Page:** Cadastro de mercados e usuários.
+- **Chatbot:** Envio de mensagens automáticas.
+- Comunicação via HTTP/HTTPS.
+
+---
+
+### 🧩 Backend
+
+**Controllers**
+- `chatController.ts`: Processa requisições do chatbot.
+- `staticResponsesController.ts`: Fornece respostas estáticas.
+
+**Agents**
+- `externalAgent.ts`: Integração com Gemini.
+- `localAgent.ts`: Integração com Tinyllama.
+
+**Modelos**
+- `FoodProvider`: Estrutura de fornecedores.
+- `StaticResponse`: Mensagens pré-cadastradas.
+
+**Rotas**
+- `/chat`
+- `/static-response/:id`
+
+**Banco de Dados**
+- MongoDB.
+
+---
+
+### ⚙️ Infraestrutura
+- Docker Compose (orquestra containers).
+- Entrypoint.sh (garante inicialização ordenada).
+- Variáveis de ambiente para segredos.
+
+---
+
+## 🔧 Visão Arquitetônica Inicial (Pré-Modelagem de Ameaças)
+
+**Características da versão inicial:**
+- Sem autenticação.
+- Comunicação HTTP.
+- Sem rate limiting.
+- CORS permissivo.
+
+---
+
+### 🗺️ Diagrama de Fluxo de Dados Inicial
+
+O diagrama de fluxo de dados inicial foi criado para retratar a arquitetura do sistema **Food Providers** no estágio anterior à aplicação de controles de segurança. Ele mostra como as requisições dos usuários eram processadas, evidenciando características como a comunicação em texto claro via HTTP, a ausência de autenticação para acessar os endpoints e a falta de mecanismos robustos de validação de entradas. Esse panorama inicial permitiu identificar pontos críticos de vulnerabilidade, que poderiam ser explorados por atacantes para comprometer a confidencialidade, a integridade ou a disponibilidade do sistema. A visualização detalhada desse fluxo é fundamental para entender a origem dos riscos e embasar as decisões de mitigação que foram aplicadas posteriormente.
+
+- [Acesse o Diagrama de Fluxo de Dados Inicial](https://drive.google.com/file/d/1xv_3Oseo4VHd8HpLwZ3kmVgtl5wNdeYT/view?usp=sharing)
+
+---
+
+## 🔧 Visão Arquitetônica Final (Após Mitigação)
+
+**Controles aplicados:**
+- HTTPS obrigatório.
+- Rate limiting.
+- Validação e sanitização.
+- Timeouts em requisições externas.
+- Logs estruturados.
+- CORS restrito.
+
+---
+
+### 🗺️ Diagrama de Fluxo de Dados Final
+
+O diagrama de fluxo de dados final representa a arquitetura do **Food Providers** após a implementação das medidas de segurança levantadas durante o processo de modelagem de ameaças. Ele destaca mudanças significativas, como a adoção de comunicação criptografada por HTTPS, a autenticação de usuários, a aplicação de rate limiting para conter abusos, e a validação rigorosa de dados recebidos pelo backend. Além disso, evidencia a utilização de logs estruturados e mecanismos de monitoramento para rastrear operações críticas. Esta versão do diagrama reflete um sistema mais maduro, resiliente e alinhado às melhores práticas de segurança, mostrando de maneira visual como as contramedidas reforçaram os limites de confiança e protegeram os fluxos de dados.
+
+- [Acesse o DFD Final](https://drive.google.com/file/d/1_9A3rL0RJ-SFiO4GxHxZiGlkeGaqN-H9/view?usp=sharing)
+
+---
+
+## 📋 Tabela de Ameaças e Mitigação (STRIDE)
+
+Para identificar de maneira sistemática os riscos de segurança presentes no sistema, foi utilizada a metodologia **STRIDE**, que classifica ameaças em seis categorias principais: falsificação de identidade (spoofing), manipulação de dados (tampering), repúdio, divulgação de informações, negação de serviço e elevação de privilégio. A seguir, apresenta-se uma tabela que relaciona cada ameaça identificada no **Food Providers**, apontando qual categoria STRIDE se aplica, qual parte do sistema é afetada, o impacto potencial, a probabilidade de ocorrência e as principais medidas de mitigação propostas ou implementadas.
+
+- [Acesse a tabela de Ameaças e Mitigação](https://docs.google.com/spreadsheets/d/1idsdAQcXF_bmplIQDVyxMy1uKEcTooMwsVxtbOtEBKw/edit?usp=sharing)
+
+---
+
+## 📉 Matriz de Riscos
+
+Com base nas ameaças identificadas e classificadas na tabela anterior, foi construída uma matriz de riscos que considera dois fatores principais: **impacto** e **probabilidade**. Essa matriz auxilia na priorização das ações de mitigação, permitindo identificar quais ameaças requerem tratamento imediato e quais podem ser acompanhadas de forma preventiva. A escala utilizada varia de baixa a alta severidade, conforme descrito abaixo.
+
+- [Acesse a Matriz de Riscos](https://docs.google.com/spreadsheets/d/1idsdAQcXF_bmplIQDVyxMy1uKEcTooMwsVxtbOtEBKw/edit?usp=sharing)
+
+---
+
+## ✅ Conclusão e Recomendações
+
+A evolução do sistema **Food Providers** ao longo do processo de modelagem de ameaças evidencia como práticas de segurança estruturadas podem transformar profundamente uma aplicação distribuída. Com a aplicação das melhorias propostas, o sistema tornou-se mais robusto e confiável, preparado para proteger informações sensíveis e lidar com possíveis ataques.
+
+Entre os principais avanços implementados, destacam-se:
+
+- **Autenticação e autorização robustas**, garantindo que apenas usuários devidamente validados possam acessar funcionalidades críticas da API.
+- **Criptografia obrigatória em todas as comunicações**, assegurando integridade e confidencialidade dos dados trafegados entre frontend, backend e serviços externos.
+- **Monitoramento detalhado e logs estruturados**, que aumentam a rastreabilidade e facilitam investigações em caso de incidentes.
+- **Aplicação de rate limiting**, prevenindo ataques de negação de serviço (DoS) e garantindo maior disponibilidade da plataforma.
+- **Segregação de dados sensíveis** por meio de variáveis de ambiente, reduzindo riscos de exposição acidental de credenciais ou chaves.
+
+Apesar desses avanços significativos, alguns pontos exigem atenção contínua no ciclo de vida do sistema. Para manter o nível de segurança alcançado, recomenda-se:
+
+- A realização periódica de **testes de penetração**, de modo a identificar vulnerabilidades que possam surgir em novas versões do código ou em mudanças na infraestrutura.
+- O monitoramento constante de **métricas de uso e de segurança**, permitindo detectar comportamentos suspeitos ou padrões de ataque de maneira proativa.
+- A atualização sistemática de **dependências e bibliotecas de terceiros**, prevenindo exploração de falhas conhecidas.
+- A criação e manutenção de **políticas formais de resposta a incidentes**, com definição de responsabilidades, fluxos de comunicação e procedimentos para conter e remediar problemas de forma organizada.
+
+A combinação dessas práticas reforça não apenas a capacidade do **Food Providers** de cumprir sua missão social de reduzir a insegurança alimentar, mas também seu compromisso com a proteção dos dados e da confiança dos usuários. Uma abordagem integrada, preventiva e bem documentada é essencial para garantir a resiliência e a sustentabilidade do projeto no longo prazo.
