@@ -64,7 +64,6 @@ Diante desse cenário, é evidente a necessidade de **soluções inovadoras e in
 
 ### Pré-requisitos
 
-- Node.js
 - Docker
 - Docker Compose
 - Docker Desktop (opcional)
