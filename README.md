@@ -64,6 +64,7 @@ Diante desse cenário, é evidente a necessidade de **soluções inovadoras e in
 
 ### Pré-requisitos
 
+- Node.js
 - Docker
 - Docker Compose
 - Docker Desktop (opcional)
@@ -81,19 +82,18 @@ git clone <repository-url>
 cd food-provider-chatbot
 ```
 
-2. Crie um arquivo .env na pasta "backend" do projeto com o seguinte formato:
+2.Instale as dependências da raiz (e dos workspaces frontend/backend):
+```bash
+npm install
+```
+
+3. Crie um arquivo .env na pasta "backend" do projeto com o seguinte formato:
 
 ```bash
 PORT=3000
 DB_STRING=<CONNECTION_STRING_DO_MONGO_DB>
 GEMINI_API_KEY=<API_KEY_DO_GEMINI>
 GEOCODER_API_KEY=<API_KEY_DO_LOCATIONIQ>
-```
-
-3. Execute no terminal estando na pasta "backend"
-
-```bash
-npm install
 ```
 
 Para instalar as dependências do backend
@@ -106,7 +106,7 @@ npm run seed:food-providers
 npm run seed:static-responses
 ```
 
-5. Execute o backend com o seguinte comando:
+5. Inicie o projeto completo (frontend + backend) com:
 
 ```bash
 npm run dev
@@ -160,7 +160,18 @@ food-providers/
 │   ├── 📄 package-lock.json           # Lockfile de dependências
 │   └── 📄 tsconfig.json               # Configuração do TypeScript
 │
-├── 📂 frontend/                        # Em desenvolvimento
+├── 📂 frontend/                       
+│     ├── 📂 src/
+│     │   ├── 📂 components/         # Componentes reutilizáveis (ex: Chatbot)
+│     │   ├── 📂 assets/             # Ícones e imagens
+|     |   ├── 📄 App.css             # Estilo principal da página
+│     │   ├── 📄 App.tsx             # Componente raiz
+│     │   ├── 📄 main.tsx            # Ponto de entrada
+│     │   └── 📄 index.css           # Estilização global
+│     ├── 📄 index.html              # HTML base
+│     ├── 📄 package.json            # Scripts e dependências
+│     ├── 📄 tsconfig.json           # Configuração do TypeScript
+│     └── 📄 vite.config.ts          # Configuração do Vite
 │
 └── 📘 README.md                        # Documentação principal
 ```
