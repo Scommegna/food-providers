@@ -163,7 +163,7 @@ food-providers/
 │     ├── 📂 src/
 │     │   ├── 📂 components/         # Componentes reutilizáveis (ex: Chatbot)
 │     │   ├── 📂 assets/             # Ícones e imagens
-|     |   ├── 📄 App.css             # Estilo principal da página
+│     │   ├── 📄 App.css             # Estilo principal da página
 │     │   ├── 📄 App.tsx             # Componente raiz
 │     │   ├── 📄 main.tsx            # Ponto de entrada
 │     │   └── 📄 index.css           # Estilização global
