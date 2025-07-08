@@ -34,8 +34,6 @@ Embora existam campanhas solidárias, feiras e supermercados com promoções em 
 Este projeto visa atuar diretamente nessa lacuna. Propomos o desenvolvimento de uma **solução digital acessível**, composta por:
 
 - ✅ Um **chatbot**, para envio automático de promoções de alimentos;
-- ✅ Uma **landing page**, que permita o cadastro de mercados e usuários interessados;
-- ✅ Um **sistema de conexão inteligente** entre ofertas disponíveis e pessoas com insegurança alimentar.
 
 A escolha de um chat como principal canal de comunicação se justifica por ser uma ferramenta de comunicação amplamente presente no cotidiano da população, independentemente da faixa de renda. Ao utilizá-lo como ponto central para a divulgação de promoções e ofertas, facilita-se o acesso à informação, especialmente para quem possui recursos limitados — uma vez que as mensagens chegariam diretamente para a pessoa, sem exigir que a pessoa ativamente as procure em outros meios.
 
